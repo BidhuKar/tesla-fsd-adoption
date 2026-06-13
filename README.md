@@ -4,6 +4,7 @@
 
 **Stack:** SQL (SQLite) · Python (pandas, matplotlib) · Tableau Public
 
+# Portfolio Page: https://bidhukar.github.io/tesla-fsd-adoption/   
 ## Key findings
 
 1. **The 25% headline overstates usable access by ~3x.** China alone contributes ~17 of those 25 points, but its rollout is limited by data-compliance rules. Only **~31% of the "approved" population (≈639M people) can actually use FSD today.**
