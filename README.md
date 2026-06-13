@@ -11,6 +11,12 @@
 3. **US adoption now faces a regulatory headwind, not a technical one.** NHTSA's investigation scope grew from 2.4M vehicles (Oct 2024) to a 3.2M-vehicle Engineering Analysis (Mar 2026) — the formal step before a recall — over camera-visibility failures and traffic-law violations.
 4. **The biggest untapped markets have no framework at all.** India (1.45B) and Brazil (216M) lack any announced regulatory path for supervised L2+ systems.
 
+<img width="1500" height="750" alt="image" src="https://github.com/user-attachments/assets/7b2838e9-7744-4bd4-bf9d-205f38846325" />
+
+<img width="1500" height="750" alt="image" src="https://github.com/user-attachments/assets/e856121b-88b1-4346-86a1-1ee2cdcbe590" />
+
+<img width="1050" height="750" alt="image" src="https://github.com/user-attachments/assets/2a652710-ffe2-4d29-a487-1a467953e101" />
+
 ## Repository structure
 
 ```
