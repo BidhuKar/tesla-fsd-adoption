@@ -1,0 +1,9 @@
+event_date,agency,event_type,vehicles_in_scope,description,source
+2021-06-01,NHTSA,Standing General Order,all ADAS/ADS,SGO requires manufacturers to report crashes with ADAS/ADS engaged within 30s before collision,NHTSA SGO
+2024-10-01,NHTSA,Preliminary Evaluation,2400000,PE into FSD performance in reduced-visibility conditions (sun glare fog dust),NHTSA ODI
+2025-10-07,NHTSA,Preliminary Evaluation PE25012,2880000,Opened after 58 incidents incl. red-light running and wrong-lane travel with FSD engaged,NHTSA ODI / Reuters
+2025-12-03,NHTSA,Information Request,2880000,Sweeping IR demanding complaints field reports crashes lawsuits internal assessments; deadline Jan 19 2026,NHTSA / Electrek
+2026-01-12,Tesla,Extension Request,,Tesla reports 8313 records pending manual review (~300/day capacity); deadline extended,Electrek
+2026-02-20,NHTSA,Deadline Extension,,Second extension granted; crash data (video EDR CAN bus) due Mar 9 2026,Electrek
+2026-03-01,NHTSA,Engineering Analysis,3200000,EA opened (pre-recall step) over camera-visibility failures: glare fog airborne debris; 1 fatal + 2 injury crashes among 9 incidents,Insurance Journal / Reuters
+2026-05-07,NHTSA,NCAP ADAS Pass,,2026 Model Y first vehicle to pass NHTSA's 4 new ADAS NCAP tests (Level 2 benchmark),NHTSA press release

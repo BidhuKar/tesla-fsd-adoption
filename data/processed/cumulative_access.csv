@@ -1,0 +1,14 @@
+approval_date,country,region,population,pct_global_population,status,notes,cumulative_pct
+2020-10-01,United States,North America,349035494,4.2,live,Initial limited beta; wide release Nov 2022,4.2
+2022-03-01,Canada,North America,42181965,0.51,live,,4.71
+2025-02-01,Mexico,North America,132997658,1.6,live,,6.3100000000000005
+2025-02-01,Puerto Rico,North America,3222688,0.04,live,,6.3500000000000005
+2025-02-01,China,Asia-Pacific,1412914089,17.02,limited,Limited rollout; data-compliance rules stalled wide release; v14 re-release expected under new local branding,23.37
+2025-09-01,Australia,Asia-Pacific,27227096,0.33,live,,23.7
+2025-09-01,New Zealand,Asia-Pacific,5287479,0.06,live,,23.759999999999998
+2025-11-01,South Korea,Asia-Pacific,51600388,0.62,live,,24.38
+2026-04-01,Netherlands,Europe,18448775,0.22,live,Dutch RDW landmark approval; template for other EU states,24.599999999999998
+2026-05-01,Lithuania,Europe,2797338,0.03,live,,24.63
+2026-05-01,Estonia,Europe,1331062,0.02,pending,Approved; rollout pending,24.65
+2026-06-01,Denmark,Europe,6023520,0.07,live,,24.72
+2026-06-01,Belgium,Europe,11774642,0.14,pending,Approved; rollout pending,24.86

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tesla FSD Adoption — Data Analysis Portfolio Project</title>
+<meta name="description" content="A data analyst's deep dive into Tesla Full Self-Driving global adoption: SQL, Python, Tableau.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0E1B2C; --paper:#F2F5F7; --card:#FFFFFF;
+  --live:#2E7D5B; --limited:#C9A227; --signal:#D6452B;
+  --rule:#D6DDE3; --mono:'IBM Plex Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'IBM Plex Sans',sans-serif;background:var(--paper);color:var(--ink);line-height:1.6}
+.wrap{max-width:980px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:'Space Grotesk',sans-serif;line-height:1.15}
+.eyebrow{font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--signal)}
+
+/* hero */
+header{padding:72px 0 40px;border-bottom:1px solid var(--rule)}
+h1{font-size:clamp(2rem,5.4vw,3.4rem);font-weight:700;margin:.5rem 0 1rem;max-width:18ch}
+.lede{font-size:1.1rem;max-width:60ch;color:#33445a}
+
+/* signature: road gauge */
+.road{margin:42px 0 8px;background:var(--ink);border-radius:10px;padding:26px 22px;position:relative;overflow:hidden}
+.lane{position:relative;height:54px;border-top:2px solid #5a6c82;border-bottom:2px solid #5a6c82}
+.lane::after{content:"";position:absolute;left:0;right:0;top:50%;height:3px;
+  background:repeating-linear-gradient(90deg,#e8c84a 0 26px,transparent 26px 48px)}
+.fill{position:absolute;inset:0;width:0;background:linear-gradient(90deg,rgba(46,125,91,.85),rgba(46,125,91,.55));
+  transition:width 1.6s cubic-bezier(.2,.8,.2,1)}
+.road .label{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.8rem;color:#9fb1c6;margin-top:12px}
+.road strong{color:#fff;font-size:1rem}
+@media (prefers-reduced-motion: reduce){.fill{transition:none}}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin:34px 0}
+.stat{background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:18px}
+.stat .n{font-family:'Space Grotesk';font-size:1.9rem;font-weight:700}
+.stat .d{font-size:.85rem;color:#5a6b80}
+.n.green{color:var(--live)} .n.amber{color:#9a7b16} .n.red{color:var(--signal)}
+
+section{padding:46px 0;border-bottom:1px solid var(--rule)}
+h2{font-size:1.6rem;margin-bottom:1rem}
+p{max-width:68ch;margin-bottom:1rem}
+.findings{display:grid;gap:16px;margin-top:8px}
+.finding{background:var(--card);border-left:4px solid var(--live);border:1px solid var(--rule);border-left-width:4px;border-radius:6px;padding:18px 20px}
+.finding.amber{border-left-color:var(--limited)} .finding.red{border-left-color:var(--signal)}
+.finding h3{font-size:1.05rem;margin-bottom:.35rem}
+.finding p{font-size:.95rem;margin:0;color:#33445a}
+
+.stack{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.chip{font-family:var(--mono);font-size:.8rem;border:1px solid var(--ink);border-radius:999px;padding:6px 14px}
+
+.recs li{margin:0 0 12px 1.2rem;max-width:66ch}
+.recs b{font-family:var(--mono);font-size:.8rem;color:var(--signal);text-transform:uppercase;letter-spacing:.08em;display:block}
+
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
+.btn{font-family:'Space Grotesk';font-weight:700;text-decoration:none;border-radius:6px;padding:12px 22px;display:inline-block}
+.btn.primary{background:var(--ink);color:#fff}
+.btn.ghost{border:2px solid var(--ink);color:var(--ink)}
+.btn:focus-visible{outline:3px solid var(--signal);outline-offset:2px}
+
+footer{padding:36px 0;font-size:.85rem;color:#5a6b80}
+footer a{color:var(--ink)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <span class="eyebrow">Portfolio project · SQL + Python + Tableau · June 2026</span>
+    <h1>Tesla FSD says 25% of the world has access. Only a third of that is real.</h1>
+    <p class="lede">I audited Tesla Full Self-Driving's global rollout the way a regulator would: country approvals, rollout status, NHTSA investigation records, and the expansion pipeline — then quantified the gap between the headline and usable access.</p>
+
+    <div class="road" aria-label="Share of approved population that can actually use FSD: 31 percent">
+      <div class="lane"><div class="fill" id="fill"></div></div>
+      <div class="label"><span>Population in "approved" markets: <strong>2.06B</strong></span><span>Can actually engage FSD: <strong>639M · 31%</strong></span></div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="n">13</div><div class="d">countries with regulatory approval (2020–2026)</div></div>
+      <div class="stat"><div class="n green">~30 days</div><div class="d">between EU approvals in 2026 — down from 17 months (US→Canada)</div></div>
+      <div class="stat"><div class="n amber">17 pts</div><div class="d">of the 25% headline come from China's still-limited rollout</div></div>
+      <div class="stat"><div class="n red">3.2M</div><div class="d">US vehicles in NHTSA's Engineering Analysis — the step before a recall</div></div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <span class="eyebrow">Findings</span>
+    <h2>What the data actually says</h2>
+    <div class="findings">
+      <div class="finding"><h3>Approval is a network effect</h3><p>The Dutch RDW's April 2026 approval became a template other European regulators reuse — five EU countries approved FSD in roughly 60 days. Regulatory velocity, not software capability, is now the growth variable.</p></div>
+      <div class="finding amber"><h3>"Access" ≠ adoption</h3><p>Splitting approved population by rollout status (live / limited / pending) cuts usable access to ~31% of the headline. China's data-compliance rules alone freeze two-thirds of the claimed reach.</p></div>
+      <div class="finding red"><h3>The US is the leader and the bottleneck</h3><p>NHTSA escalated from a 2.4M-vehicle evaluation (2024) to a 3.2M-vehicle Engineering Analysis (2026) over camera-visibility failures and traffic-law violations — while Tesla could manually process only ~300 records a day of the regulator's data request.</p></div>
+      <div class="finding"><h3>The biggest markets have no rules at all</h3><p>India (1.45B) and Brazil (216M) have no announced framework for supervised L2+ systems. The constraint there isn't approval — it's that there is nothing to approve against.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="eyebrow">Method</span>
+    <h2>How I built it</h2>
+    <p>Curated three datasets from primary public reporting (regulatory approval tracker, NHTSA investigation timeline, expansion pipeline), loaded them into SQLite, and wrote 8 SQL analyses — window functions for cumulative access and approval velocity, status splits for the headline-vs-reality gap. A reproducible Python script generates the processed tables and charts; Tableau Public hosts the interactive dashboard.</p>
+    <div class="stack">
+      <span class="chip">SQLite · window functions</span>
+      <span class="chip">Python · pandas</span>
+      <span class="chip">matplotlib</span>
+      <span class="chip">Tableau Public</span>
+      <span class="chip">NHTSA SGO / ODI records</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="eyebrow">Recommendations</span>
+    <h2>What I'd tell the strategy team</h2>
+    <ul class="recs">
+      <li><b>United States</b>Treat the Engineering Analysis as the critical path: ship proactive camera-degradation alerts before a recall mandates them, and automate the regulatory data pipeline — slow responses compound distrust.</li>
+      <li><b>Europe</b>Ride the RDW template: sequence Nordics and Benelux first, then push a single EU type-approval instead of 27 national campaigns.</li>
+      <li><b>China</b>Ship the rebranded v14 with full in-country data residency — treat the rebrand as a compliance product, not marketing.</li>
+      <li><b>New markets</b>Reuse the UAE playbook: 12–18 months of localized road testing shared with the regulator before launch; in India and Brazil, help write the supervised-system standard rather than wait for one.</li>
+    </ul>
+    <div class="cta">
+      <a class="btn primary" href="https://github.com/YOUR_USERNAME/tesla-fsd-adoption">View the GitHub repo</a>
+      <a class="btn ghost" href="https://public.tableau.com/app/profile/YOUR_PROFILE">Open the Tableau dashboard</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Built by <strong>YOUR NAME</strong> · <a href="https://www.linkedin.com/in/YOUR_LINKEDIN">LinkedIn</a> · Sources: Not a Tesla App, Tesla Vehicle Safety Report, NHTSA ODI &amp; NCAP, Electrek/Reuters reporting. Population shares as published; analysis measures regulatory access, not purchase take-rate.
+  </div>
+</footer>
+
+<script>
+window.addEventListener('load',()=>{requestAnimationFrame(()=>{document.getElementById('fill').style.width='31%';});});
+</script>
+</body>
+</html>
