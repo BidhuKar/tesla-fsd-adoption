@@ -68,6 +68,80 @@ p{max-width:68ch;margin-bottom:1rem}
 
 footer{padding:36px 0;font-size:.85rem;color:#5a6b80}
 footer a{color:var(--ink)}
+
+/* Visual Enhancements & Grid Gallery */
+.metric-card {
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.metric-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(14,27,44,0.08);
+  border-color: #5a6c82;
+}
+.stat {
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.stat:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(14,27,44,0.06);
+  border-color: #5a6c82;
+}
+.chart-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+  margin: 30px 0;
+}
+@media (min-width: 768px) {
+  .chart-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .chart-card-wide {
+    grid-column: span 2;
+  }
+}
+.chart-card {
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.chart-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(14,27,44,0.07);
+}
+.chart-card h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.15rem;
+  margin-bottom: 16px;
+  color: var(--ink);
+  text-align: left;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 8px;
+}
+.chart-card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  margin: 10px 0;
+}
+.chart-card p {
+  font-size: 0.9rem;
+  color: #5a6b80;
+  margin-top: 12px;
+  text-align: left;
+  line-height: 1.5;
+}
 </style>
 </head>
 <body>
@@ -84,10 +158,14 @@ footer a{color:var(--ink)}
     </div>
 
     <div class="stats">
-      <div class="stat"><div class="n">13</div><div class="d">countries with regulatory approval (2020–2026)</div></div>
-      <div class="stat"><div class="n green">~30 days</div><div class="d">between EU approvals in 2026 — down from 17 months (US→Canada)</div></div>
-      <div class="stat"><div class="n amber">17 pts</div><div class="d">of the 25% headline come from China's still-limited rollout</div></div>
-      <div class="stat"><div class="n red">3.2M</div><div class="d">US vehicles in NHTSA's Engineering Analysis — the step before a recall</div></div>
+      <div class="stat"><div class="n">2.06B</div><div class="d">Total population in "approved" countries</div></div>
+      <div class="stat"><div class="n green">639M</div><div class="d">Can actually use FSD today (31% of headline)</div></div>
+      <div class="stat"><div class="n">13</div><div class="d">Countries with regulatory approval (2020–2026)</div></div>
+      <div class="stat"><div class="n green">~30 days</div><div class="d">Between EU approvals in 2026 (vs. 17 months: US→Canada)</div></div>
+      <div class="stat"><div class="n amber">17 pts</div><div class="d">Of the 25% headline come from China's limited rollout</div></div>
+      <div class="stat"><div class="n red">3.2M</div><div class="d">US vehicles in NHTSA's Engineering Analysis (pre-recall step)</div></div>
+      <div class="stat"><div class="n">2.2B</div><div class="d">Population in pipeline markets (India, Brazil, Japan, EU)</div></div>
+      <div class="stat"><div class="n amber">1.45B</div><div class="d">India's population — no announced regulatory framework</div></div>
     </div>
   </div>
 </header>
@@ -101,6 +179,232 @@ footer a{color:var(--ink)}
       <div class="finding amber"><h3>"Access" ≠ adoption</h3><p>Splitting approved population by rollout status (live / limited / pending) cuts usable access to ~31% of the headline. China's data-compliance rules alone freeze two-thirds of the claimed reach.</p></div>
       <div class="finding red"><h3>The US is the leader and the bottleneck</h3><p>NHTSA escalated from a 2.4M-vehicle evaluation (2024) to a 3.2M-vehicle Engineering Analysis (2026) over camera-visibility failures and traffic-law violations — while Tesla could manually process only ~300 records a day of the regulator's data request.</p></div>
       <div class="finding"><h3>The biggest markets have no rules at all</h3><p>India (1.45B) and Brazil (216M) have no announced framework for supervised L2+ systems. The constraint there isn't approval — it's that there is nothing to approve against.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="background: #eef2f5; border-bottom: 1px solid var(--rule);">
+  <div class="wrap">
+    <span class="eyebrow" style="color: var(--live);">📍 Framework & Dimensions</span>
+    <h2>Regional & Velocity Metrics Highlighted in This Project</h2>
+    <p>To understand FSD adoption beyond raw numbers, I analyzed both regional differences and velocity metrics—two critical dimensions that Tesla strategy teams use internally to evaluate autonomy readiness.</p>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 24px;">
+      <!-- Card 1: Regional Metrics -->
+      <div class="metric-card">
+        <h3 style="color: var(--ink); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; font-weight: 700;">
+          <span style="display: inline-block; width: 8px; height: 8px; background: var(--live); border-radius: 50%;"></span>
+          Regional Metrics
+        </h3>
+        <p style="font-size: 0.95rem; color: #33445a; margin-bottom: 12px;">Measuring how adoption, regulatory gates, and safety baselines differ across geographic boundaries.</p>
+        <ul style="list-style-type: none; font-size: 0.9rem; color: #5a6b80; display: grid; gap: 8px; padding-left: 0;">
+          <li>🔒 <b>Regulatory Readiness Score (0–5):</b> Compares US (3.5), EU (2.0), and China (4.0) frameworks based on policy support, testing permissions, and data constraints.</li>
+          <li>📊 <b>Regional Adoption Mix:</b> Highlighting regional differences (e.g., NA's Live rollout vs China's data compliance stall).</li>
+          <li>🛡️ <b>Localized Safety Signals:</b> Analyzing empirical crash averages and interventions across jurisdictions.</li>
+          <li>🌐 <b>Infrastructure Readiness:</b> Evaluating physical road quality, HD map constraints, and environmental variations.</li>
+          <li>🤝 <b>Consumer Trust Index:</b> Mapping the gap between public perception and physical software capability.</li>
+        </ul>
+      </div>
+
+      <!-- Card 2: Velocity Metrics -->
+      <div class="metric-card">
+        <h3 style="color: var(--ink); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; font-weight: 700;">
+          <span style="display: inline-block; width: 8px; height: 8px; background: var(--signal); border-radius: 50%;"></span>
+          Velocity Metrics
+        </h3>
+        <p style="font-size: 0.95rem; color: #33445a; margin-bottom: 12px;">Measuring the speed of systemic change—how fast the software improves and how rapidly rules adapt.</p>
+        <ul style="list-style-type: none; font-size: 0.9rem; color: #5a6b80; display: grid; gap: 8px; padding-left: 0;">
+          <li>📈 <b>Adoption Growth Velocity:</b> Quarterly increases in subscriber take-rate over time.</li>
+          <li>⚡ <b>Safety Improvement Velocity:</b> Safety gains (miles between crashes) as FSD versions mature.</li>
+          <li>⏱️ <b>Regulatory Progress Velocity:</b> Collapse in approval latency (from 17 months down to 30 days in the 2026 EU wave).</li>
+          <li>🔄 <b>Software Release Cadence:</b> Cycle times between major neural network releases (v12 → v12.3 → v14).</li>
+          <li>🚀 <b>Release-Driven Subscription Spikes:</b> Measurable subscription growth immediately following major software release milestones.</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div style="margin-top: 24px; font-style: italic; color: #5a6b80; font-size: 0.95rem; text-align: center; font-weight: 600;">
+      "These metrics help reveal where FSD adoption is growing fastest, where it is most constrained, and how quickly the technology is improving."
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="eyebrow">Data Visualizations</span>
+    <h2>The analysis in charts</h2>
+    
+    <div class="chart-grid">
+      <!-- Chart 1: Cumulative Access -->
+      <div class="chart-card chart-card-wide">
+        <h3>Global Population with FSD Access (Cumulative)</h3>
+        <img src="docs/img/cumulative_access.png" alt="Cumulative access step chart">
+        <p>Each country's approval adds to the cumulative population share. Note the 2026 European wave: five countries in ~60 days, showing that regulatory approvals behave like a network domino effect once a reference decision (Dutch RDW) is established.</p>
+      </div>
+
+      <!-- Chart 2: Status Breakdown -->
+      <div class="chart-card">
+        <h3>Headline vs. Reality: Population by Rollout Status</h3>
+        <img src="docs/img/status_breakdown.png" alt="Status breakdown bar chart">
+        <p><strong>Live (green)</strong>: Active rollout (639M people) · <strong>Limited (gold)</strong>: China's restricted access (1.41B people) · <strong>Pending (red)</strong>: Approved but not yet rolled out (13M people). The 25% headline overstates usable access by ~3x because two-thirds of the approved population is locked in China's data-compliance stall.</p>
+      </div>
+
+      <!-- Chart 3: Regional Distribution -->
+      <div class="chart-card">
+        <h3>Approved FSD Population by Region & Status</h3>
+        <img src="docs/img/regional_distribution.png" alt="Regional distribution stacked bar chart">
+        <p>A regional breakdown shows how FSD availability is shaped by local laws. North America is almost fully live, Asia-Pacific is dominated by China's limited status, and Europe has approvals but remains mostly pending rollout.</p>
+      </div>
+
+      <!-- Chart 4: Regulatory Readiness Score -->
+      <div class="chart-card">
+        <h3>Regional Regulatory Readiness Index (0-5 Scale)</h3>
+        <img src="docs/img/regulatory_readiness.png" alt="Regional regulatory readiness score index chart">
+        <p>Quantifying readiness across regions on a 0-5 scale. China leads in policy support (4.0/5), the US leads in testing permissions (3.5/5), while the European Union remains the most restrictive (2.0/5) due to strict L2+ testing caps and GDPR data residency burdens.</p>
+      </div>
+
+      <!-- Chart 5: US NHTSA FSD Investigation Scope -->
+      <div class="chart-card">
+        <h3>US NHTSA FSD Investigation Scope Over Time</h3>
+        <img src="docs/img/nhtsa_scope.png" alt="US NHTSA investigation scope growth">
+        <p>Investigation scope grew 33% from Oct 2024 (2.4M vehicles) to Mar 2026 (3.2M vehicles) — now in the Engineering Analysis phase, the formal step before a recall. Camera-only degradation under glare and debris remains the primary regulatory hazard in the US.</p>
+      </div>
+
+      <!-- Chart 6: Safety Reality vs. Public Narrative -->
+      <div class="chart-card chart-card-wide">
+        <h3>Safety Reality vs. Public Narrative: Crash Miles vs. Media Scrutiny</h3>
+        <img src="docs/img/safety_vs_narrative.png" alt="Safety Reality vs Public Narrative chart">
+        <p>Comparing actual safety data (miles between crashes under FSD vs. US national average) against relative negative media narrative volume. Empirical safety shows FSD is 10.5x safer than the US average, but media scrutiny of FSD crashes remains extremely high (95 pts index). This reveals that <strong>the biggest barrier to adoption isn't capability — it's trust</strong>.</p>
+      </div>
+
+      <!-- Chart 7: FSD Subscription Index Over Time -->
+      <div class="chart-card chart-card-wide">
+        <h3>FSD Subscription Index Over Time: Key Release Milestones</h3>
+        <img src="docs/img/subscription_spikes.png" alt="FSD Subscription Index chart">
+        <p>Tracking the subscription index shows how software releases (such as v12.3 introducing end-to-end neural nets, accompanied by a 1-month free trial and a price cut to $99/mo) and regulatory approvals (such as the EU wave) drive massive adoption velocity.</p>
+      </div>
+
+      <!-- Chart 8: Pipeline Opportunity -->
+      <div class="chart-card chart-card-wide">
+        <h3>FSD Expansion Pipeline: Top Untapped Markets</h3>
+        <img src="docs/img/pipeline_opportunity.png" alt="FSD expansion pipeline untapped markets chart">
+        <p>Combined, the untapped pipeline represents 2.2B people. India (1.45B) and Brazil (216M) represent the largest untapped populations but currently have no announced regulatory framework, highlighting that shaping local standards is the biggest scaling barrier.</p>
+      </div>
+    </div>
+
+    <!-- Data Table: Rollout Velocity -->
+    <div style="margin: 30px 0; background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 20px; overflow-x: auto;">
+      <h3 style="margin-bottom: 16px;">Rollout Velocity by Year</h3>
+      <table style="width: 100%; font-size: 0.9rem; border-collapse: collapse;">
+        <thead>
+          <tr style="background: #f5f7f9; border-bottom: 2px solid var(--rule);">
+            <th style="padding: 12px; text-align: left;">Year</th>
+            <th style="padding: 12px; text-align: center;">Approvals</th>
+            <th style="padding: 12px; text-align: right;">Population Added</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid var(--rule);">
+            <td style="padding: 12px;">2020</td>
+            <td style="padding: 12px; text-align: center;">1</td>
+            <td style="padding: 12px; text-align: right; font-weight: 600;">349M</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--rule);">
+            <td style="padding: 12px;">2022</td>
+            <td style="padding: 12px; text-align: center;">1</td>
+            <td style="padding: 12px; text-align: right; font-weight: 600;">42M</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--rule);">
+            <td style="padding: 12px;">2025</td>
+            <td style="padding: 12px; text-align: center;">6</td>
+            <td style="padding: 12px; text-align: right; font-weight: 600; color: var(--limited);">1.63B</td>
+          </tr>
+          <tr style="background: #f5f7f9;">
+            <td style="padding: 12px;">2026 (Q1–Q2)</td>
+            <td style="padding: 12px; text-align: center;">5</td>
+            <td style="padding: 12px; text-align: right; font-weight: 600; color: var(--live);">40M</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="font-size: 0.85rem; color: #5a6b80; margin-top: 12px;"><strong>Insight:</strong> 2025 saw a massive jump (China + Mexico + Australia + 3 others in one year), but 2026 shows consolidation. Regulatory approval comes in waves, not linearly.</p>
+    </div>
+
+    <!-- Data Table: Pipeline Opportunities -->
+    <div style="margin: 30px 0; background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 20px; overflow-x: auto;">
+      <h3 style="margin-bottom: 16px;">Pipeline: Top 10 Untapped Markets by Population</h3>
+      <table style="width: 100%; font-size: 0.9rem; border-collapse: collapse;">
+        <thead>
+          <tr style="background: #f5f7f9; border-bottom: 2px solid var(--rule);">
+            <th style="padding: 12px; text-align: left;">Country</th>
+            <th style="padding: 12px; text-align: right;">Population</th>
+            <th style="padding: 12px; text-align: left;">Status (Q2 2026)</th>
+            <th style="padding: 12px; text-align: left;">Key Blocker</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid var(--rule); background: #fef5f5;">
+            <td style="padding: 12px; font-weight: 600;">India</td>
+            <td style="padding: 12px; text-align: right; font-weight: 600;">1.45B</td>
+            <td style="padding: 12px; color: var(--signal);">Not announced</td>
+            <td style="padding: 12px; font-size: 0.85rem;">No regulatory framework</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--rule); background: #fef5f5;">
+            <td style="padding: 12px; font-weight: 600;">Brazil</td>
+            <td style="padding: 12px; text-align: right; font-weight: 600;">216M</td>
+            <td style="padding: 12px; color: var(--signal);">Not announced</td>
+            <td style="padding: 12px; font-size: 0.85rem;">No announced framework</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--rule);">
+            <td style="padding: 12px; font-weight: 600;">Japan</td>
+            <td style="padding: 12px; text-align: right; font-weight: 600;">123M</td>
+            <td style="padding: 12px; color: var(--limited);">Pipeline 2026</td>
+            <td style="padding: 12px; font-size: 0.85rem;">Localization + approval</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--rule);">
+            <td style="padding: 12px; font-weight: 600;">Germany</td>
+            <td style="padding: 12px; text-align: right; font-weight: 600;">84M</td>
+            <td style="padding: 12px; color: var(--limited);">Pipeline</td>
+            <td style="padding: 12px; font-size: 0.85rem;">EU type-approval pending</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--rule);">
+            <td style="padding: 12px; font-weight: 600;">United Kingdom</td>
+            <td style="padding: 12px; text-align: right; font-weight: 600;">69M</td>
+            <td style="padding: 12px; color: var(--limited);">Expected</td>
+            <td style="padding: 12px; font-size: 0.85rem;">Awaiting regulator decision</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--rule);">
+            <td style="padding: 12px; font-weight: 600;">France</td>
+            <td style="padding: 12px; text-align: right; font-weight: 600;">66M</td>
+            <td style="padding: 12px; color: var(--limited);">Pipeline</td>
+            <td style="padding: 12px; font-size: 0.85rem;">EU type-approval pending</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--rule);">
+            <td style="padding: 12px; font-weight: 600;">Italy</td>
+            <td style="padding: 12px; text-align: right; font-weight: 600;">59M</td>
+            <td style="padding: 12px; color: var(--limited);">Pipeline</td>
+            <td style="padding: 12px; font-size: 0.85rem;">EU type-approval pending</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--rule);">
+            <td style="padding: 12px; font-weight: 600;">Spain</td>
+            <td style="padding: 12px; text-align: right; font-weight: 600;">48M</td>
+            <td style="padding: 12px; color: var(--limited);">Pipeline</td>
+            <td style="padding: 12px; font-size: 0.85rem;">EU type-approval pending</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--rule);">
+            <td style="padding: 12px; font-weight: 600;">UAE</td>
+            <td style="padding: 12px; text-align: right; font-weight: 600;">9.9M</td>
+            <td style="padding: 12px; color: var(--limited);">Road testing</td>
+            <td style="padding: 12px; font-size: 0.85rem;">Localized data collection</td>
+          </tr>
+          <tr style="background: #f5f7f9;">
+            <td style="padding: 12px; font-weight: 600;">Norway</td>
+            <td style="padding: 12px; text-align: right; font-weight: 600;">5.6M</td>
+            <td style="padding: 12px; color: var(--limited);">Pipeline</td>
+            <td style="padding: 12px; font-size: 0.85rem;">High EV penetration; pending</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="font-size: 0.85rem; color: #5a6b80; margin-top: 12px;"><strong>Opportunity:</strong> Combined, the pipeline represents 2.2B people — nearly as large as the currently "approved" population. India alone is 3x the current US FSD user base.</p>
     </div>
   </div>
 </section>
